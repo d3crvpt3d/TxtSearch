@@ -1,6 +1,33 @@
 #include <stdio.h>
 #include <string.h>
 
+void searchLine(char const wort[], char const *text){
+    int loc = 0;
+
+    int w_len = strlen(wort);
+    int t_len = strlen(text);
+
+    for(int i = 0; i < t_len; i++){
+        if(text[i] == wort[loc]){
+            loc++;
+            if(loc == w_len){
+                printf("Found word at %i\n", i+1-w_len);
+                if(text[i] == wort[0]){
+                    loc = 1;
+                }else{
+                    loc = 0;
+                }
+            }
+        }else{
+            if(text[i] == wort[0]){
+                loc = 1;
+            }else{
+                loc = 0;
+            }
+        }
+    }
+}
+
 int main(int argc, char const *argv[])
 {
 
@@ -34,32 +61,4 @@ int main(int argc, char const *argv[])
     
 
     return 0;
-}
-
-
-void searchLine(char const wort[], char const *text){
-    int loc = 0;
-
-    int w_len = strlen(wort);
-    int t_len = strlen(text);
-
-    for(int i = 0; i < t_len; i++){
-        if(text[i] == wort[loc]){
-            loc++;
-            if(loc == w_len){
-                printf("Found word at %i\n", i+1-w_len);
-                if(text[i] == wort[0]){
-                    loc = 1;
-                }else{
-                    loc = 0;
-                }
-            }
-        }else{
-            if(text[i] == wort[0]){
-                loc = 1;
-            }else{
-                loc = 0;
-            }
-        }
-    }
 }
